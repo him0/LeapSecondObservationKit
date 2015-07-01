@@ -11,7 +11,7 @@ import queue
 
 que = queue.Queue()
 #thread数を増やせば誤差は減る
-num_of_thread = 500
+num_of_thread = 1200
 leap_unix_time = 1435708800
 
 def get_time(c, i):
@@ -24,12 +24,14 @@ def get_time(c, i):
         unix_time = float(unix_time)
         unix_time = int(unix_time)
         
+        leap = response.leap
+        
         if (leap_unix_time - 10) <= unix_time and unix_time < leap_unix_time:
-            print("\033[33m" + str(unix_time) + "\033[0m")
+            print("\033[33m" + str(leap) + " : " + str(unix_time) + "\033[0m")
         elif unix_time == leap_unix_time:
-            print("\033[31m" + str(unix_time) + "\033[0m")
+            print("\033[31m" + str(leap) + " : " + str(unix_time) + "\033[0m")
         else:
-            print(unix_time)
+            print(str(leap) + " : " + str(unix_time))
         
         time.sleep(num_of_thread)
 
